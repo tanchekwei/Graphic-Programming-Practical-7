@@ -1,8 +1,10 @@
 #include <Windows.h>
 #include <gl/GL.h>
+#include <gl/glext.h>
+
 #include <math.h>
 #pragma comment(lib, "OpenGL32.lib")
-
+  
 #define WINDOW_TITLE "OpenGL Window"
 
 void drawCube(float size);
@@ -82,7 +84,7 @@ bool initPixelFormat(HDC hdc)
 void initTexture() {
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	HBITMAP hBMP = (HBITMAP)LoadImage(GetModuleHandle(NULL),
-		"Box.bmp", IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION |
+		"/Box.bmp", IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION |
 		LR_LOADFROMFILE);
 	GetObject(hBMP, sizeof(BMP), &BMP);
 }
@@ -104,7 +106,7 @@ void display()
 	glEnable(GL_DEPTH_TEST);
 
 	if (rotate) {
-		glRotatef(0.1, 1, 1, 1);
+		glRotatef(1, 1, 1, 1);
 	}
 
 	glEnable(GL_TEXTURE_2D);
@@ -123,14 +125,13 @@ void display()
 	glDisable(GL_TEXTURE_2D);
 	DeleteObject(hBMP);
 	glDeleteTextures(1, &texture);
-
 }
 
 void drawCube(float size)
 {
 	glBegin(GL_QUADS);
 	// front
-	glColor3ub(30, 136, 229);
+	// glColor3ub(30, 136, 229);
 	glTexCoord2f(0.0f, 1);
 	glVertex3f(0, 0, size);
 
@@ -144,7 +145,7 @@ void drawCube(float size)
 	glVertex3f(0, 0, 0);
 
 	// left
-	glColor3ub(223, 120, 239);
+	// glColor3ub(223, 120, 239);
 	glTexCoord2f(0.0f, 1);
 	glVertex3f(0, size, size);
 	glTexCoord2f(1, 1);
@@ -155,7 +156,7 @@ void drawCube(float size)
 	glVertex3f(0, size, 0);
 
 	// bottom
-	glColor3ub(128, 226, 126);
+	// glColor3ub(128, 226, 126);
 	glTexCoord2f(0.0f, 1);
 	glVertex3f(0, size, 0);
 	glTexCoord2f(1, 1);
@@ -166,7 +167,7 @@ void drawCube(float size)
 	glVertex3f(0, 0, 0);
 
 	// right
-	glColor3ub(255, 255, 114);
+	// glColor3ub(255, 255, 114);
 	glTexCoord2f(0.0f, 1);
 	glVertex3f(size, 0, size);
 	glTexCoord2f(1, 1);
@@ -177,7 +178,7 @@ void drawCube(float size)
 	glVertex3f(size, 0, 0);
 
 	// behind
-	glColor3ub(255, 201, 71);
+	// glColor3ub(255, 201, 71);
 	glTexCoord2f(0.0f, 1);
 	glVertex3f(size, size, size);
 	glTexCoord2f(1, 1);
@@ -188,7 +189,7 @@ void drawCube(float size)
 	glVertex3f(size, size, 0);
 
 	// top
-	glColor3ub(115, 232, 255);
+	// glColor3ub(115, 232, 255);
 	glTexCoord2f(0.0f, 1);
 	glVertex3f(0, size, size);
 	glTexCoord2f(1, 1);
